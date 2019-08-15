@@ -1,0 +1,49 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com-badrit-base64": {
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "cordova-plugin-crop": {
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "cordova-plugin-facebook4": {
+      "APP_ID": "2116883488382244",
+      "APP_NAME": "prevenir_express",
+      "FACEBOOK_ANDROID_SDK_VERSION": "4.+",
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "cordova-plugin-telerik-imagepicker": {
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.prevenirexpress.medicos"
+    }
+  },
+  "dependent_plugins": {}
+}
