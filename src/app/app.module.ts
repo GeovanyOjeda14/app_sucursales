@@ -6,8 +6,6 @@ import {CitasPage} from '../pages/citas/citas'
 import { CalendarModule } from 'ionic3-calendar-en';
 // import {Calendar} from 'ionic3-calendar-en/src/calendar/calendar';
 
-
-
 import { HomePage } from '../pages/home/home';
 import { ServiciosPage } from '../pages/servicios/servicios';
 import { ContactenosPage } from '../pages/contactenos/contactenos';
@@ -139,9 +137,7 @@ import { Push } from '@ionic-native/push';
     CalificacionPageModule,
     MedicosPageModule,
     AgregarMedicoPageModule,
-    ModalMedicoPageModule
-
-
+    ModalMedicoPageModule,
 
   ],
   bootstrap: [IonicApp],

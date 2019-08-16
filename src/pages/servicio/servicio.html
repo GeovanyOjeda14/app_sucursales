@@ -75,7 +75,7 @@
 				  <h2><strong>Precio clientes prevenir :</strong> ${{servicio.precio_cliente_prevenir}}</h2>
 				  <h2><strong>Duracion aprox. en minutos :</strong> {{servicio.duracion}}</h2>
 				  <h2><strong>Dirección :</strong> {{servicio.direccion}}</h2>
-				  <h2><strong>Medico :</strong> {{nombresMedico}}</h2>
+				  <!-- <h2><strong>Medico :</strong> {{nombresMedico}}</h2> -->
 				  <br>
                   <p>{{ servicio.descripcion }}</p>
 			  </ion-card-content>
@@ -173,6 +173,9 @@
 	<button ion-fab icon-center (click)="sacarCita(servicio.id_servicios,servicio.id_categoria)" >
 		<ion-icon name="medkit"></ion-icon>
 	</button>
+	<!-- <button ion-fab icon-center (click)="sacarCitaInfo()" >
+		<ion-icon name="medkit"></ion-icon>
+	</button> -->
 
 </ion-fab>
 

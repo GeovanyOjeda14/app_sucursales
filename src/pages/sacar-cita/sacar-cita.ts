@@ -57,7 +57,13 @@ export class SacarCitaPage {
   id_mascota;
   numeroMascotas:boolean;
   load;
-  
+  sucursales;
+  ver = false;
+  public medicos;
+
+  // formControls
+  sucursarSelect = new FormControl('', [Validators.required]);
+  medicoSelect = new FormControl('', [Validators.required]);
  
   
   constructor(public navCtrl: NavController, public navParams: NavParams,private api : ApiProvider,private formBuilder: FormBuilder,
@@ -70,7 +76,10 @@ export class SacarCitaPage {
     this.mascota = this.navParams.get('mascota');
     this.id_categoria = this.navParams.get('id_categoria'); 
     this.citaProvedor = this.navParams.get('info');
+    this.sucursales = this.navParams.get('sucursales');
     // console.log(this.id_categoria);
+
+    console.log(this.sucursales);
 
     // console.log(this.citaProvedor.id_categoria);
 
@@ -81,8 +90,8 @@ export class SacarCitaPage {
         this.obtenerMascotas();
     }else{
 
-        this.validacion();
-        this.obtenerBeneficiarios();
+        // this.validacion();
+        // this.obtenerBeneficiarios();
     
       }
     }else{
@@ -90,7 +99,7 @@ export class SacarCitaPage {
     }
 
     this.today = moment(new Date().toISOString()).format('YYYY-M-DD');
-    this.horarios();     
+    // this.horarios();     
   }
 
   
@@ -206,7 +215,8 @@ export class SacarCitaPage {
     if(!this.fecha)
     {
       this.f = this.today;
-      this.api.getHorario(this.today,this.id_servicio,this.id_categoria).subscribe((data)=>{
+      console.log('consultorio', this.medicoSelect.value.consultorio);
+      this.api.getHorario(this.today,this.medicoSelect.value.consultorio,this.id_categoria).subscribe((data)=>{
         console.log(data);
         let hors= data[0];
         this.maniana = hors.maniana;
@@ -235,7 +245,7 @@ export class SacarCitaPage {
       });
     }else{
       this.f = this.fecha;
-      this.api.getHorario(this.fecha,this.id_servicio,this.id_categoria).subscribe((data)=>{
+      this.api.getHorario(this.fecha,this.medicoSelect.value.consultorio,this.id_categoria).subscribe((data)=>{
         console.log(data);
         let hors= data[0];
         this.maniana = hors.maniana;
@@ -984,6 +994,40 @@ export class SacarCitaPage {
     this.formularioMascotaNueva();
     }
    }
+  }
+
+
+  // Metodos sucursales
+
+  selecionadaSucursal(ev) {
+    console.log(this.sucursarSelect.value);
+    // console.log(ev);
+
+    this.api.getMedicosServicio(this.sucursarSelect.value.id_sucursales, this.id_servicio).subscribe( (response) => {
+      console.log(response);
+      this.medicos = response;
+
+      if(this.medicos.length <= 1){
+        this.medicoSelect.setValue(response[0]);
+      }
+
+    }, (err) => {
+      console.log(err);
+    });
+    // peticion a medico
+  }
+
+  medicoSelecionado() {
+    console.log(this.medicoSelect.value);
+  }
+
+  selectMedico(ev) {
+    
+  }
+
+  buscarCita(){
+    this.ver = true;
+    this.horarios();
   }
 
 }

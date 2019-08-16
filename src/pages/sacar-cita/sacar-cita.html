@@ -5,9 +5,9 @@
       Sacar cita
     </ion-title>
     <ion-buttons end *ngIf="!citaProvedor">
-      <button ion-button (click)="calendar.today()">
+      <button ion-button (click)="calendar.today()" *ngIf="ver === true">
         <ion-icon name="calendar"></ion-icon>
-        </button>
+      </button>
   </ion-buttons>
 
   </ion-navbar>
@@ -21,50 +21,139 @@
       (onMonthSelect)="onMonthSelect($event)"
      
       ></ion-calendar> -->
-  
-  <ion-calendar #calendar lang="es"
-  (onDaySelect)="onDaySelect($event)"
 
- 
-  ></ion-calendar>
-  <h1 class="h1" *ngIf="!hr">Horario Disponible</h1>
-  <h1 class="h1" *ngIf="hr">Horario No Disponible</h1>
-  <h3 *ngIf="!hr">Mañana</h3>
-  <div class="cerrado" *ngIf="mn">
-  <img  class="img_cerrado"  src="/assets/imgs/cerrado.jpg" alt="">
-  </div>
+    <div *ngIf="ver === false">
+
+      <div style="text-align: center; padding: 20px;">
+        <h5>Escoge una sucursal</h5>
+      </div>
+
+        <ion-list>
+          <ion-item>
+            <ion-label>Sucursales</ion-label>
+            <ion-select placeholder="Sucursales" cancelText="cancelar" [formControl]="sucursarSelect" (ionChange)="selecionadaSucursal($event)">
+              <ion-option *ngFor="let s of sucursales" [value]="s">{{s.nombre}}</ion-option>
+            </ion-select>
+          </ion-item>    
+        </ion-list>
+
+        <ion-card *ngIf="sucursarSelect.valid">
+            <ion-card-header><strong>Informacion</strong></ion-card-header>
+
+            <ion-card-content>
+                <h2><strong>Sucursal : </strong>{{sucursarSelect.value.nombre}}</h2>
+                <h2><strong>Direccion : </strong>{{sucursarSelect.value.direccion}}</h2>
+                <h2><strong>Telefono : </strong>{{sucursarSelect.value.telefono}}</h2>
+                <h2><strong>Municipio : </strong>{{sucursarSelect.value.municipio}}</h2>
+            </ion-card-content>
+        </ion-card>
+
+        <div style="padding-top: 10px; text-align: center;">
+          <h5 *ngIf="medicos && this.medicos.length >= 2">Selecciona un medico</h5>
+          <h5 *ngIf="medicos && this.medicos.length <= 1">Medico</h5>
+        </div>
+
+        <ion-list *ngIf="medicos && this.medicos.length >= 2"> 
+          <ion-item>
+            <ion-label>Medico</ion-label>
+            <ion-select placeholder="Medico" cancelText="cancelar" [formControl]="medicoSelect" (ionChange)="medicoSelecionado($event)">
+                <ion-option value="aleatorio">Aleatorio</ion-option>
+              <ion-option *ngFor="let m of medicos" [value]="m">{{m.nombres}} {{m.apellidos}}</ion-option>
+            </ion-select>
+          </ion-item>        
+        </ion-list>
+
+        <ion-card *ngIf="medicoSelect.valid && medicos && this.medicos.length >= 2">
+            <ion-card-header><strong>Informacion Medico</strong></ion-card-header>
+
+            <ion-card-content>
+                <h2><strong>Nombres : </strong>{{medicoSelect.value.nombres}}</h2>
+                <h2><strong>Apellidos : </strong>{{medicoSelect.value.apellidos}}</h2>
+                <h2><strong>Titulo : </strong>{{medicoSelect.value.titulo}}</h2>
+                <div style="text-align: end" >
+                    <button ion-button icon-left round block (click)="verPerfilMedico()">
+                        <ion-icon name="eye"></ion-icon>
+                          Ver perfil medico
+                      </button>    
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf=" medicos && this.medicos.length <= 1 ">
+            <ion-card-header><strong>Informacion Medico</strong></ion-card-header>
+
+            <ion-card-content>
+                <h2><strong>Nombres : </strong>{{medicoSelect.value.nombres}}</h2>
+                <h2><strong>Apellidos : </strong>{{medicoSelect.value.apellidos}}</h2>
+                <h2><strong>Titulo : </strong>{{medicoSelect.value.titulo}}</h2>
+                <div style="text-align: end" >
+                    <button ion-button icon-left color="danger" round block (click)="verPerfilMedico()">
+                        <ion-icon name="eye"></ion-icon>
+                          Ver perfil medico
+                      </button>    
+                </div>
+            </ion-card-content>
+        </ion-card>
 
 
-  <div class="hr"  *ngIf="!hr">
 
- 
-  
-<ion-list>
-    <div *ngFor="let i of maniana">
-      <button ion-item (click)="sacarCita(i.hora)" *ngIf="!mn" [disabled]="i.libres === 0" >
-        <p>{{i.hora}}</p>
-        <p>Citas disponibles : {{i.libres}}</p>
-      </button>
-    </div>   
-</ion-list>   
-
-<h3>Tarde</h3>
-<ion-list>
-<div *ngFor="let i of tarde">
-    <button ion-item (click)="sacarCita(i.hora,'tarde')" *ngIf="!td" [disabled]="i.libres === 0" >
-      <p>{{i.hora}}</p>
-      <p>Citas disponibles : {{i.libres}}</p>
-    </button>
-  </div>
-</ion-list>
-
-<div class="cerrado" *ngIf="td">
-    <img  class="img_cerrado"  src="/assets/imgs/cerrado.jpg" alt="">
+        <button ion-button icon-left color="danger" round block (click)="buscarCita()" [disabled]="!sucursarSelect.valid || !medicoSelect.valid">
+          <ion-icon name="medkit"></ion-icon>
+            Sacar cita
+        </button>
+    
     </div>
-
-</div>
-
-</div>
+  
+    <div *ngIf="ver === true">
+              
+              <!-- INICIO CALENDARIO -->
+            
+          <ion-calendar #calendar lang="es"
+          (onDaySelect)="onDaySelect($event)"
+            
+            
+          ></ion-calendar>
+          <h1 class="h1" *ngIf="!hr">Horario Disponible</h1>
+          <h1 class="h1" *ngIf="hr">Horario No Disponible</h1>
+          <h3 *ngIf="!hr">Mañana</h3>
+          <div class="cerrado" *ngIf="mn">
+          <img  class="img_cerrado"  src="/assets/imgs/cerrado.jpg" alt="">
+          </div>
+        
+        
+          <div class="hr"  *ngIf="!hr">
+          
+          
+          
+        <ion-list>
+            <div *ngFor="let i of maniana">
+              <button ion-item (click)="sacarCita(i.hora)" *ngIf="!mn" [disabled]="i.libres === 0" >
+                <p>{{i.hora}}</p>
+                <p>Citas disponibles : {{i.libres}}</p>
+              </button>
+            </div>   
+        </ion-list>   
+        
+        <h3>Tarde</h3>
+        <ion-list>
+        <div *ngFor="let i of tarde">
+            <button ion-item (click)="sacarCita(i.hora,'tarde')" *ngIf="!td" [disabled]="i.libres === 0" >
+              <p>{{i.hora}}</p>
+              <p>Citas disponibles : {{i.libres}}</p>
+            </button>
+          </div>
+        </ion-list>
+        
+        <div class="cerrado" *ngIf="td">
+            <img  class="img_cerrado"  src="/assets/imgs/cerrado.jpg" alt="">
+            </div>
+          
+        </div>
+        
+        
+        <!-- FIN CALENDARIO -->
+      </div>  
+    </div>
 
 
  <!-- ----------------------------------SACAR CITA PROVEDOR ---------------------------------------------- -->

@@ -279,11 +279,11 @@ export class ApiProvider {
       return this.http.get(this.apiUrl+'/user/'+id);
     }
 
-    getHorario(fecha,id,id_categoria){
+    getHorario(fecha,id_consultorio,id_categoria){
       // console.log(fecha);
       // console.log("AQUIIIIIIIIIIIIIIIIII");
       // console.log(id_categoria);
-      return this.http.get(this.apiUrl+'/citas/'+fecha+'/'+id+'/'+id_categoria);
+      return this.http.get(this.apiUrl+'/citas/'+fecha+'/'+id_consultorio+'/'+id_categoria);
     }
     getCitasUsuario(id){
       return this.http.get(this.apiUrl + '/events/'+id);
@@ -419,6 +419,11 @@ export class ApiProvider {
     // Ruta para obtener las sucursales de un servicio
     getSucursalesServicio(id_servicio, id_provedor, id_municipio){
       return this.http.get(this.apiUrl+'/sucuserprovmuni/'+id_servicio+'/'+id_provedor+'/'+id_municipio);
+    }
+
+    // Ruta para pedir los medicos que pertenecen a un servicio de una sucursal
+    getMedicosServicio(id_sucursal, id_servicio){
+      return this.http.get(this.apiUrl+'/medicosucser/'+id_sucursal+'/'+id_servicio);
     }
 
      /////////////////////////////////////// DELETE ///////////////////////////////////////////////

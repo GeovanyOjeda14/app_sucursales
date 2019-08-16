@@ -4,12 +4,10 @@ import { IonicPage, NavController, NavParams,ToastController,Loading,
 import { SacarCitaPage } from '../sacar-cita/sacar-cita';
 import { PublicacionesProveedorPage } from '../publicaciones-proveedor/publicaciones-proveedor';
 import {ApiProvider} from '../../providers/api/api';
-import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {Global} from '../../app/global';
 import * as moment from 'moment';
 import { MedicosPage } from '../medicos/medicos';
-
-
 
 // @Pipe({
 //   name: 'youtube',
@@ -69,10 +67,10 @@ export class ServicioPage {
  comentario=[];
  masPublicaciones:boolean=false;
  infoMedico;
- nombresMedico;
+//  nombresMedico;
  esAdmin:boolean;
  load;
-
+ sucursales;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private api:ApiProvider,private formBuilder: FormBuilder,private global : Global,
@@ -127,6 +125,7 @@ export class ServicioPage {
     // console.log('sucu',id_provedor, id_servicio, id_municipio);
     this.api.getSucursalesServicio(id_servicio, id_provedor, id_municipio).subscribe( (response) => {
       console.log(response);
+      this.sucursales = response;
     }, (err) => {
       console.log(err);
     });
@@ -138,7 +137,7 @@ export class ServicioPage {
       
       this.infoMedico = data[0];
       console.log(this.infoMedico);
-      this.nombresMedico = this.infoMedico.nombres + " " + this.infoMedico.apellidos;
+      // this.nombresMedico = this.infoMedico.nombres + " " + this.infoMedico.apellidos;
     },(err)=>{
 
     });
@@ -251,7 +250,7 @@ export class ServicioPage {
 sacarCita(idProduct,id_categoria)
 {
   console.log(idProduct,'  -  ',id_categoria);
-  this.navCtrl.push(SacarCitaPage,{id_servicio:idProduct,mascota:this.mascota,id_categoria:id_categoria});
+  this.navCtrl.push(SacarCitaPage,{id_servicio:idProduct,mascota:this.mascota,id_categoria:id_categoria, sucursales : this.sucursales});
 
 }
 
@@ -306,6 +305,7 @@ mensaje(){
 
 
 }
+
 
 presentToast(msg) {
   let toast = this.toastCtrl.create({

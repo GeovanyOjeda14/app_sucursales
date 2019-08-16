@@ -5,8 +5,7 @@ import { ApiProvider } from '../../providers/api/api';
 import { ServicioPage } from '../servicio/servicio';
 import {PopoverFiltroPage} from '../popover-filtro/popover-filtro';
 import {Global} from '../../app/global';
-import { HomePage } from '../home/home';
-
+ 
 /**
  * Generated class for the ServiciosPage page.
  *
@@ -145,10 +144,6 @@ cancel(ev:any){
           // console.log(err);
         });
       }
-
-
-
-
     });
   } 
 
