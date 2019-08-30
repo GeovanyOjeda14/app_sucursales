@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
-import {HomePage} from '../home/home';
+// import {HomePage} from '../home/home';
 import {Global} from '../../app/global';
 import {ApiProvider} from '../../providers/api/api';
 
@@ -151,10 +151,10 @@ export class CalificacionPage {
       promedio = Math.round(promedio);
 
       let info = {coment:this.todo.value.comentario , califica : promedio, ids:this.info.id_servicio,
-        idU:this.global.id_usuario, idh:this.info.id_historial, masc:this.mascota};
+        idU:this.global.id_usuario, idh:this.info.id_historial, masc:this.mascota, id_consultorio : this.info.id_consultorio};
 
         //        
-        console.log(info);
+        console.log('info coment',info);
               
         this.api.postCalificacion(info).then((res)=>{
           this.load = false;

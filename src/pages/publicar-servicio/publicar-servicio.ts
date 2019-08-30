@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController,AlertController,Loading,
-LoadingController , Platform , IonicApp } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController,AlertController,Loading, IonicApp } from 'ionic-angular';
 import {ApiProvider} from '../../providers/api/api';
-import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import {Global} from '../../app/global';
-import {ListadoPublicacionesPage} from '../listado-publicaciones/listado-publicaciones';
+// import {ListadoPublicacionesPage} from '../listado-publicaciones/listado-publicaciones';
 import { HomePage } from '../home/home';
 import { Crop } from '@ionic-native/crop';
 import { Base64 } from '@ionic-native/base64';
-import { MedicosPage } from '../medicos/medicos';
+// import { MedicosPage } from '../medicos/medicos';
 
 
 /**
@@ -100,8 +99,8 @@ export class PublicarServicioPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder,
      public api:ApiProvider,private toastCtrl : ToastController,
-    private camera: Camera,private global:Global,private alertCtrl: AlertController,private loadingCtrl: LoadingController,
-    private crop: Crop,private base64: Base64 , private platform : Platform , private app : IonicApp) {
+    private camera: Camera,private global:Global,private alertCtrl: AlertController,
+    private crop: Crop,private base64: Base64 , private app : IonicApp) {
    
     this.departamentos();
     this.categorias();
@@ -959,13 +958,8 @@ export class PublicarServicioPage {
     
     break;
 
-    }
-
-    
+    } 
   }
-
- 
-  
 
   registrar(){
    

@@ -122,7 +122,8 @@ export class ServicioPage {
   }
 
   getSucursales(id_servicio, id_provedor, id_municipio) {
-    // console.log('sucu',id_provedor, id_servicio, id_municipio);
+    // console.log('servicio', this.servicio);
+    console.log('sucu',id_provedor, id_servicio, id_municipio);
     this.api.getSucursalesServicio(id_servicio, id_provedor, id_municipio).subscribe( (response) => {
       console.log(response);
       this.sucursales = response;

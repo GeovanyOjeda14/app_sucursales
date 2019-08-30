@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams,ToastController,Loading,
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import {Global} from '../../app/global';
 import {ApiProvider} from '../../providers/api/api';
-import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
 import { Crop } from '@ionic-native/crop';
 import { Base64 } from '@ionic-native/base64';

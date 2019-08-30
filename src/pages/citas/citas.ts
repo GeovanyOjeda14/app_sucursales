@@ -179,7 +179,7 @@ export class CitasPage {
 
     this.api.getCitasUsuario(this.usuario_id).subscribe((data)=>{
       this.citas = data;
-      // console.log(this.citas);
+      console.log(this.citas);
       // this.loading.dismiss();
       this.load = false;
       this.getBeneficiarios();
@@ -218,7 +218,7 @@ export class CitasPage {
           let fecha = this.beneficiarios[i].start;
           let hora = moment(fecha).format('hh:mm a');
           fecha = moment(fecha).format('DD-M-YYYY');
-          let nombres = this.beneficiarios[i].nombreU;
+          // let nombres = this.beneficiarios[i].nombreU;
           let nombre = this.beneficiarios[i].nombre;
           let id_servicio = this.beneficiarios[i].servicios_idservicios;
           let nombreU = this.beneficiarios[i].nombreU;
@@ -257,7 +257,7 @@ export class CitasPage {
       //   this.mostrarMascota = true;
       
       this.mascotas = data;
-      
+      console.log('mascotas',this.mascotas);
 
       // let length = ;
       // console.log(length);
@@ -271,14 +271,18 @@ export class CitasPage {
           let fecha = this.mascotas[i].start;
           let hora = moment(fecha).format('hh:mm a');
           fecha = moment(fecha).format('DD-M-YYYY');
-          let nombre = this.mascotas[i].nombre;
+          let nombre = this.mascotas[i].servicio;
           let nombreU = this.mascotas[i].nombreU;
           let id_eventos = this.mascotas[i].id_eventos;
           let id_servicio = this.mascotas[i].id_servicios;
           let direccion = this.mascotas[i].direccion;
+          let sucursal = this.mascotas[i].sucursal;
+          let servicio = this.mascotas[i].servicio;
+          let telefono = this.mascotas[i].telefono; 
 
-          this.infMascotas.push({fecha : fecha , hora : hora , nombre : nombre,
-          id_eventos: id_eventos ,id_servicio : id_servicio, direccion:direccion, nombreU:nombreU});
+          this.infMascotas.push({fecha : fecha , hora : hora , nombre : nombre, sucursal : sucursal,
+          id_eventos: id_eventos ,id_servicio : id_servicio, direccion:direccion, nombreU:nombreU, 
+          servicio : servicio, telefono : telefono});
         }
 
         // console.log(this.infMascotas);
@@ -298,8 +302,8 @@ export class CitasPage {
     for(var i = 0 ; i < this.servicios.length; i++)
     {
       let categoria = this.servicios[i].id_categoria;
-      let foto = this.servicios[i].foto;
-      let f = this.servicios[i];
+      // let foto = this.servicios[i].foto;
+      // let f = this.servicios[i];
       let nombre = this.servicios[i].nombre;
       let id = this.servicios[i].id_servicios;
       let descripcion = this.servicios[i].descripcion;
@@ -321,7 +325,7 @@ export class CitasPage {
       this.mostrar = true;
     }else{
 
-      // console.log(this.citas);
+      console.log('citas',this.citas);
       for(var i = 0; i < this.citas.length; i ++){
       
         let p = this.citas[i];
@@ -330,18 +334,21 @@ export class CitasPage {
         let p1 = p[0];
         let p2 = p[1];
         p2 = p2 +" "+ p[2];
-        let id_servicio = this.citas[i].servicios_idservicios;
-        let nombre = this.citas[i].nombre;
-        let id_eventos = this.citas[i].id_eventos;
+        let id_servicio = this.citas[i].id_servicios;
+        let servicio = this.citas[i].servicio;
+        let id_eventos = this.citas[i].id_eventos;  
         let direccion = this.citas[i].direccion;
+        let sucursal = this.citas[i].sucursal;
+        let telefono = this.citas[i].telefono;
 
-        this.inf.push({fecha:p1, hora: p2, id_servicio:id_servicio,nombre:nombre,id_eventos:id_eventos,direccion:direccion});
+
+        this.inf.push({fecha:p1, hora: p2, id_servicio : id_servicio,nombre:servicio,id_eventos:id_eventos,direccion:direccion, sucursal : sucursal, telefono: telefono});
   
       }
     }
     
      
-    // console.log(this.inf);
+    console.log('inf',this.inf);
     }
 
     eliminar(id,mascota){
@@ -460,7 +467,7 @@ export class CitasPage {
 
 
     ver(info){
-      // console.log(info);
+      console.log(info);
 
     
       let modal = this.modalCtrl.create(ModalCitaUserPage,{info:info});

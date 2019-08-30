@@ -31,8 +31,9 @@
       <ion-card>
         <ion-card-content>
           <h2><strong>Servicio : </strong> {{info.nombre}}</h2>
+          <h2><strong>Sucursal : </strong> {{info.sucursal}}</h2>
           <h2><strong>Dirección : </strong> {{info.direccion}}</h2>
-          <h2><strong>Numero de contacto : </strong> {{telefonoProvedor}}</h2>
+          <h2><strong>Numero de contacto : </strong> {{info.telefono}}</h2>
           <!-- <h2><strong></strong> Dirección : {{direccionProvedor}}</h2> -->
           <h2 *ngIf="calificacion"><strong>Fecha cita : </strong> {{info.start}}</h2>
           <h2 *ngIf="!calificacion"><strong>Fecha cita : </strong> {{info.fecha}}</h2>

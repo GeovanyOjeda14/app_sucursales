@@ -4,9 +4,9 @@ import { IonicPage, NavController, NavParams,Loading,
 import {FormularioRegistroPage} from '../formulario-registro/formulario-registro';
 import {FormularioRegistroAdminPage} from '../formulario-registro-admin/formulario-registro-admin';
 import {WelcomePage} from '../welcome/welcome';
-import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {ApiProvider} from '../../providers/api/api';
-import { HomePage } from '../home/home';
+// import { HomePage } from '../home/home';
 import CryptoJS from 'crypto-js';
 
 /**

@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController,Loading,
   LoadingController } from 'ionic-angular';
 import {ApiProvider} from '../../providers/api/api';
-import { Storage } from '@ionic/storage';
+// import { Storage } from '@ionic/storage';
 import { Facebook } from '@ionic-native/facebook';
 import {HomePage} from '../home/home';
 import CryptoJS from 'crypto-js';
-import {RegistroPage} from '../registro/registro';
-import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+// import {RegistroPage} from '../registro/registro';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+// import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 /**
  * Generated class for the FormularioRegistroPage page.
@@ -47,7 +47,6 @@ export class FormularioRegistroPage {
     public auth:ApiProvider,private fb:Facebook,private formBuilder: FormBuilder,public loadingCtrl: LoadingController) {
     this.esAdmin = this.navParams.get('esAdmin');
 
-
     this.datos = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.minLength(4),Validators.maxLength(20)]],
       apellido: ['',[Validators.required, Validators.minLength(4),Validators.maxLength(20)]],
@@ -56,12 +55,7 @@ export class FormularioRegistroPage {
       pssw: ['',[Validators.required,Validators.minLength(8)]],
       confirmacion: ['',[Validators.required,Validators.minLength(8)]],
       check:[false,[Validators.requiredTrue]]
-   
-
     });
-
-
-    
   }
 
   registroFacebook(){
@@ -82,10 +76,6 @@ export class FormularioRegistroPage {
             this.hashed = CryptoJS.SHA512(this.pssw).toString(CryptoJS.enc.Hex);
             this.idFb=this.user.id;
             // console.log(this.esAdmin);
-            
-            
-           
-
             let user ={"email":this.user.email,"identificacion":"","pssw":this.hashed,
             "nombre":this.user.first_name,"apellido":this.user.last_name,"esAdmin":this.esAdmin,"face":this.face,avatar:this.user.picture.data.url};
             // console.log(user);
@@ -101,9 +91,7 @@ export class FormularioRegistroPage {
               // console.log(this.resposeData);
 
               let recorrido = result[0];
-              let recorri2 = result[1];
-
-              
+              let recorri2 = result[1];             
               // console.log("/////////////////////AQUIIII///////");
               // console.log(recorrido.existe);
 
@@ -112,13 +100,12 @@ export class FormularioRegistroPage {
                 this.tokenR = this.resposeData.token;
                 this.id_usuario = this.resposeData.id_usuario;
               
-                let int = parseInt(recorri2.id_usuario);
+                // let int = parseInt(recorri2.id_usuario);
                 // console.log("IDDDDDD  ",int);
                 localStorage.setItem(this.key,JSON.stringify(recorri2.token));
                 localStorage.setItem(this.keyId,JSON.stringify(recorri2.id_usuario));
                 localStorage.setItem(this.keyAdmin,JSON.stringify(recorri2.esAdmin));
                 
-
                 this.userData.nombre = this.user.first_name;
                 this.userData.apellido = this.user.last_name;
                 this.userData.email = this.user.email;
@@ -139,8 +126,6 @@ export class FormularioRegistroPage {
               this.load = false;
               this.presentToast("Error en la conexion intentalo mas tarde")}
           );
-            
-      
           })
           .catch(error =>{
             this.load = false;
@@ -184,9 +169,7 @@ export class FormularioRegistroPage {
     "pssw":this.hashed,"nombre":this.datos.value.nombre,
     "apellido":this.datos.value.apellido,"esAdmin":this.esAdmin,"face":this.face,"avatar":"http://cdn.prevenirexpress.com/avatars/avatarundefined.png"};
     
-    
     // console.log(userData);
-
 
      this.auth.postLogin(userData,"/register").then((result)=>{
      this.resposeData = result;
@@ -213,7 +196,6 @@ export class FormularioRegistroPage {
         // this.loading.dismiss();
         this.load = false;
        
-
         let campo = this.resposeData[1];
         campo = campo[0].campo;
         if(campo === "email"){
@@ -226,8 +208,8 @@ export class FormularioRegistroPage {
     },(error)=>{
       // this.loading.dismiss();
       this.load = false;
-      this.presentToast("error en la conexión intentalo mas tarde")}
-    );
+      this.presentToast("error en la conexión intentalo mas tarde")
+    });
       }
       else{
       // console.log("No son iguales");
@@ -239,9 +221,6 @@ export class FormularioRegistroPage {
   goBack(){
     this.navCtrl.pop();
   }
-
-
-
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad FormularioRegistroPage');

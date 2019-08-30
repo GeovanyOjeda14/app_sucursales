@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController,Loading,
   LoadingController } from 'ionic-angular';
-import { Facebook } from '@ionic-native/facebook';
+// import { Facebook } from '@ionic-native/facebook';
 import CryptoJS from 'crypto-js';
 import {HomePage} from '../home/home';
-import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {ApiProvider} from '../../providers/api/api';
 
 /**
@@ -35,7 +35,7 @@ export class FormularioRegistroAdminPage {
   confirm:boolean = false;
   load;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private fb:Facebook,
+  constructor(public navCtrl: NavController, public navParams: NavParams,
     private toastCtrl:ToastController,public auth:ApiProvider,private formBuilder: FormBuilder,
     public loadingCtrl: LoadingController) {
 

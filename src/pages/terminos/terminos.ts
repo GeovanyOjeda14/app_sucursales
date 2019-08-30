@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController,Loading,
   LoadingController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
-import { Global } from '../../app/global';
+// import { Global } from '../../app/global';
 
 /**
  * Generated class for the TerminosPage page.
@@ -25,7 +25,7 @@ export class TerminosPage {
   visual:boolean=false;
   load;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private api : ApiProvider, private global:Global, private toastCtrl:ToastController,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private api : ApiProvider, private toastCtrl:ToastController,
     public loadingCtrl: LoadingController) {
 
     this.comentarios = this.navParams.get('info');
@@ -135,6 +135,4 @@ export class TerminosPage {
     });
     toast.present();
   }
-
-
 }

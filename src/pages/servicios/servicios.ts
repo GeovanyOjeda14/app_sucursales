@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,PopoverController,Loading,
-  LoadingController,ToastController, Platform , IonicApp} from 'ionic-angular';
+  LoadingController,ToastController , IonicApp} from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { ServicioPage } from '../servicio/servicio';
 import {PopoverFiltroPage} from '../popover-filtro/popover-filtro';
@@ -35,7 +35,7 @@ export class ServiciosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public api:ApiProvider,
     private popoverCtr : PopoverController,public loadingCtrl: LoadingController,private toastCtrl:ToastController,
-    private global : Global, private platform : Platform , private app : IonicApp) {
+    private global : Global, private app : IonicApp) {
 
       this.url = this.global.apiUrl;
       this.mostr();

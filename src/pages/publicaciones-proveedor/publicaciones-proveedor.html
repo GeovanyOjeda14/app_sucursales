@@ -118,7 +118,7 @@
             <button ion-button color="prevenir" (click)="ver(h)" icon-left *ngIf="h.calificada == 1">
               <ion-icon name="eye"></ion-icon>
               Ver</button>
-            <button ion-button icon-left color="energized" (click)="calificar(h)" *ngIf="h.calificada == 0">
+            <button ion-button icon-left color="energized" (click)="calificar(h)" *ngIf="h.calificada == 0" [disabled]="h.fue == 0">
                 <ion-icon name="star"></ion-icon>
                 Calificar</button>
         </div>

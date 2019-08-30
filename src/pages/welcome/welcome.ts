@@ -4,10 +4,9 @@ import { IonicPage, NavController, NavParams,ToastController,MenuController,Load
 import {RegistroPage} from '../registro/registro';
 import { Facebook } from '@ionic-native/facebook';
 import CryptoJS from 'crypto-js';
-import { Storage } from '@ionic/storage';
 import {HomePage} from '../home/home';
 import {ApiProvider} from '../../providers/api/api';
-import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 /**
  * Generated class for the WelcomePage page.

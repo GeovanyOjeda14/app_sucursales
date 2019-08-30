@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,Loading,
   LoadingController,ToastController } from 'ionic-angular';
-import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ApiProvider } from '../../providers/api/api';
 import CryptoJS from 'crypto-js';
 import { Global } from '../../app/global';
 import { HomePage } from '../home/home';
-import { isRightSide } from 'ionic-angular/umd/util/util';
+// import { isRightSide } from 'ionic-angular/umd/util/util';
 
 /**
  * Generated class for the AgregarMedicoPage page.

@@ -45,7 +45,7 @@
         <div *ngFor="let c of inf">
           <ion-item>
       <ion-card>
-        <ion-card-header>{{c.nombre}}</ion-card-header>
+        <ion-card-header><strong>Cita en : </strong>{{c.nombre}}</ion-card-header>
         <ion-card-content>
           <p><strong>Fecha :</strong>  {{c.fecha}}</p>
           <p><strong>Hora :</strong>  {{c.hora}}</p>
@@ -82,11 +82,11 @@
             <div *ngFor="let c of infBeneficiarios">
               <ion-item>
           <ion-card>
-            <ion-card-header>{{c.nombre}}</ion-card-header>
+            <ion-card-header><strong>Cita en : </strong>{{c.nombre}}</ion-card-header>
             <ion-card-content>
-              <p>Nombre : {{c.nombreU}}</p>
-              <p>Fecha : {{c.fecha}}</p>
-              <p>Hora : {{c.hora}}</p>
+              <p><strong>Nombre : </strong>{{c.nombreU}}</p>
+              <p><strong>Fecha : </strong>{{c.fecha}}</p>
+              <p><strong>Hora : </strong>{{c.hora}}</p>
               
               <br>
               <button ion-button icon-left  (click)="ver(c)">
@@ -120,11 +120,11 @@
         <div *ngFor="let m of infMascotas">
           <ion-item>
       <ion-card>
-        <ion-card-header>{{m.nombre}}</ion-card-header>
+        <ion-card-header><strong>Cita en : </strong>{{m.nombre}}</ion-card-header>
         <ion-card-content>
-          <p>Nombre : {{m.nombreU}}</p>
-          <p>Fecha : {{m.fecha}}</p>
-          <p>Hora : {{m.hora}}</p>
+          <p><strong>Nombre : </strong>{{m.nombreU}}</p>
+          <p><strong>Fecha : </strong>{{m.fecha}}</p>
+          <p><strong>Hora : </strong>{{m.hora}}</p>
           
           <br>
           <button ion-button icon-left  (click)="ver(m)">

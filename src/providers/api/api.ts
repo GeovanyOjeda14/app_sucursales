@@ -1,6 +1,6 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import {Global} from '../../app/global';
 
 /*
@@ -246,13 +246,18 @@ export class ApiProvider {
 
      /////////////////////////////////////// GET ///////////////////////////////////////////////
 
+    // Ruta para pedir los departamentos
     getDepartamento()
     {
       return this.http.get(this.apiUrl+'/departamentos/47');
     }
+
+    // Ruta para pedir los municipios
     getMunicipio(id){
       return this.http.get(this.apiUrl+'/municipios/'+id);
     }
+
+    // Ruta para pedir las categorias
     getCategorias(){
       return this.http.get(this.apiUrl+'/categoria');
     }

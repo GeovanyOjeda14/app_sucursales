@@ -200,7 +200,7 @@ export class AgregarBeneficiarioPage {
     } else {
       
       datos = {fecha_n:this.datos.value.fecha , nomb: this.datos.value.nombre , apellidos : this.datos.value.apellido, ident: this.datosSinCuenta.value.identificacion, cuenta : bol,
-        parent:this.beneParentesco , tel:this.datosSinCuenta.value.telefono, pais:this.pSelect};
+        parent:this.beneParentesco , tel:this.datosSinCuenta.value.telefono, pais:this.pSelect, id_usu:this.global.id_usuario};
       console.log(datos);
     }
 

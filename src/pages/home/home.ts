@@ -328,7 +328,7 @@ load;
             let id_servicios = this.calificacion[i].id_servicios;
             let locked = this.calificacion[i].locked;
             let max_citas_ves = this.calificacion[i].max_citas_ves;
-            let municipio_id_municipio = this.calificacion[i].municipio_id_municipio;
+            let id_municipio = this.calificacion[i].id_municipio;
             let nombre = this.calificacion[i].nombre;
             let precio = this.calificacion[i].precio;
             let precio_cliente_prevenir = this.calificacion[i].precio_cliente_prevenir;
@@ -354,7 +354,7 @@ load;
 
            this.servicio.push({medico_id:medico_id, categoria:categoria, createdAt:createdAt, createdupdate:createdupdate, descripcion:descripcion,descuento:descuento,
               direccion:direccion,duracion:duracion,foto:foto, fotos:fotos, id_categoria:id_categoria, id_provedores:id_provedores,id_servicios:id_servicios,
-              locked:locked, max_citas_ves:max_citas_ves, municipio_id_municipio:municipio_id_municipio, nombre:nombre, precio:precio,
+              locked:locked, max_citas_ves:max_citas_ves, id_municipio:id_municipio, nombre:nombre, precio:precio,
               precio_cliente_prevenir:precio_cliente_prevenir,promedio:promedio, video:video, estrellasAmarillas:estrellasAmarillas,estrellasGrises:estrellasGrises, coment : coment });
 
 

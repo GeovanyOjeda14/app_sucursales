@@ -90,8 +90,8 @@ export class SacarCitaPage {
         this.obtenerMascotas();
     }else{
 
-        // this.validacion();
-        // this.obtenerBeneficiarios();
+        this.validacion();
+        this.obtenerBeneficiarios();
     
       }
     }else{
@@ -201,7 +201,7 @@ export class SacarCitaPage {
      let today = new Date(this.today).getTime();
      let fecha = new Date(this.fecha).getTime();
 
-      if(fecha >= today)
+      if(fecha >= today) 
       {
         this.hr=false;
       }else{
@@ -213,11 +213,11 @@ export class SacarCitaPage {
 
   horarios(){
     if(!this.fecha)
-    {
+    { 
       this.f = this.today;
       console.log('consultorio', this.medicoSelect.value.consultorio);
       this.api.getHorario(this.today,this.medicoSelect.value.consultorio,this.id_categoria).subscribe((data)=>{
-        console.log(data);
+        console.log('horarios',data);
         let hors= data[0];
         this.maniana = hors.maniana;
         let hors2 = data[1];
@@ -246,7 +246,7 @@ export class SacarCitaPage {
     }else{
       this.f = this.fecha;
       this.api.getHorario(this.fecha,this.medicoSelect.value.consultorio,this.id_categoria).subscribe((data)=>{
-        console.log(data);
+        console.log('horarios',data);
         let hors= data[0];
         this.maniana = hors.maniana;
         let hors2 = data[1];
@@ -313,7 +313,7 @@ export class SacarCitaPage {
                 h = h[0];
                 h = h + ":00:00"
                 let start = this.f + " " + h;
-                let info = {color:"#07a9df" , start:start,usuario: id, servicio:this.id_servicio , mascota : this.mascota};
+                let info = {color:"#07a9df" , start:start,usuario: id, servicio:this.id_servicio, consultorio : this.medicoSelect.value.consultorio , mascota : this.mascota};
                 console.log(info);
 
                 let today = moment(new Date().toISOString()).format('YYYY-M-DD HH:mm:ss');
@@ -365,19 +365,10 @@ export class SacarCitaPage {
                   this.load = false;
                   // this.menu.enable(true);
                   this.presentToast("Error en la conexion, intentalo mas tarde");
-                });
+                  });
+                 }        
                 }
-
-             
-                 }
-
-
-
                }
-
-
-
-
           else{
 
             if(this.val.datos === false){
@@ -389,7 +380,7 @@ export class SacarCitaPage {
                h=  parseInt(h)+12; 
                h = h + ":00:00"
                let start = this.f + " " + h;
-               let info = {color:"#07a9df" , start:start,usuario:id,servicio:this.id_servicio , mascota : this.mascota};
+               let info = {color:"#07a9df" , start:start,usuario:id,servicio:this.id_servicio , consultorio : this.medicoSelect.value.consultorio, mascota : this.mascota};
                console.log(info);
 
 
@@ -437,12 +428,12 @@ export class SacarCitaPage {
                 // this.menu.enable(true);
                 this.presentToast("Error en la conexion, intentalo mas tarde");
                });
-               }
               }
+            }
            }
           }
         }
-        }
+       }
       ]
     });
     alert.present();
@@ -471,12 +462,7 @@ export class SacarCitaPage {
   sacarCitaProvedor(bol){
 
     // let fecha = ;
-
-     
-
       if(bol === true){ 
-
-
         // this.loading = this.loadingCtrl.create({
         //   spinner: 'hide',
         //   content: "Espera un momento<br>estamos agendando tu cita... ",
@@ -503,17 +489,13 @@ export class SacarCitaPage {
             // this.loading.dismiss();
             this.load = false;
             // this.menu.enable(true);
-            this.navCtrl.pop();
-            
+            this.navCtrl.pop();         
         }
-
           if (response.reservado !== undefined && response.reservado === true) {
           this.presentToast('No se puede sacar la cita, el usuario ' + this.datos.value.nombres + ' '
                              + this.datos.value.apellidos + ' ya tiene una cita reservada para este dia.'); 
-          this.load = false;
-          
+          this.load = false;      
         }
-
 
         },(err)=>{
           // this.loading.dismiss();
@@ -539,12 +521,10 @@ export class SacarCitaPage {
           let fecha = this.citaProvedor.fecha + " " + this.citaProvedor.start;
           console.log(fecha);
       
-    
           let info = {color:"#07a9df",start:fecha, mascota:undefined, servicio:this.citaProvedor.id_servicios,existe:bol, usuario:this.datos.value.identificacion, nombres:this.datos.value.nombres,
           apellidos : this.datos.value.apellidos, fecha_nacimiento: this.datos.value.fecha, contacto:this.datos.value.contacto, correo:this.datos.value.correo };
           console.log(info);
           
-  
           this.api.postCitasProvedor(info).then((res)=>{
             console.log(res);
 
@@ -562,20 +542,15 @@ export class SacarCitaPage {
             // this.loading.dismiss();
             this.load = false;
             // this.menu.enable(true);
-            this.navCtrl.pop();
-            
+            this.navCtrl.pop();           
         }
 
         if (response.reservado !== undefined && response.reservado === true) {
           this.presentToast('No se puede sacar la cita, el usuario ' + this.datos.value.nombres + ' '
                              + this.datos.value.apellidos + ' ya tiene una cita reservada para este dia.'); 
-          this.load = false;
-          
+          this.load = false;    
         }
 
-
-
-  
             // var agregado = res[0];
           // if(agregado.agregado === true){
           //   this.presentToast("Cita agregada con exito");
@@ -590,8 +565,7 @@ export class SacarCitaPage {
           //   // this.menu.enable(true);
           //   this.navCtrl.setRoot(HomePage);
           // }
-  
-  
+
           },(err)=>{
             // this.loading.dismiss();
             this.load = false;
@@ -601,11 +575,9 @@ export class SacarCitaPage {
         }
       
       }
-
   }
 
   buscarCedula(){
-
 
     // this.loading = this.loadingCtrl.create({
     //   spinner: 'hide',
@@ -617,7 +589,6 @@ export class SacarCitaPage {
 
     this.cedula =  this.datos.value.identificacion;
 
-
     if(this.citaProvedor.id_categoria == 20){
 
       if(!this.cedula){
@@ -627,7 +598,6 @@ export class SacarCitaPage {
         this.presentToast("Por favor llena el campo.");
       }else{
        
-
         this.api.cedula(this.cedula,true).subscribe((data)=>{
           console.log(data);
           // this.loading.dismiss();
@@ -645,9 +615,7 @@ export class SacarCitaPage {
             }
             this.formularioMascotasExiste();
             this.mascotaForm2=true;
-            this.read = true;
-            
-            
+            this.read = true;      
           }
         },(err)=>{
           // this.loading.dismiss();

@@ -5,20 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { CitasPage } from '../pages/citas/citas';
 import { ContactenosPage } from '../pages/contactenos/contactenos';
-import { HomePage } from '../pages/home/home';
 import { ServiciosPage } from '../pages/servicios/servicios';
 import { TerminosPage } from '../pages/terminos/terminos';
 import {UserPage} from '../pages/user/user';
-import { SacarCitaPage } from '../pages/sacar-cita/sacar-cita';
 import { WelcomePage } from '../pages/welcome/welcome';
 import {BeneficiariosPage} from '../pages/beneficiarios/beneficiarios';
 import {BlancoPage} from '../pages/blanco/blanco';
 import {ListadoPublicacionesPage} from '../pages/listado-publicaciones/listado-publicaciones';
 import {Global} from './global';
-import { Storage } from '@ionic/storage';
-import {PublicarServicioPage} from '../pages/publicar-servicio/publicar-servicio';
-import { ServicioPage } from '../pages/servicio/servicio';
-import {ApiProvider} from '../providers/api/api';
+// import {ApiProvider} from '../providers/api/api';
 // import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { MedicosPage } from '../pages/medicos/medicos';
 
@@ -36,7 +31,7 @@ export class MyApp {
 
 
   constructor(public platform: Platform,public  statusBar: StatusBar,public splashScreen: SplashScreen,
-     public global:Global, public alertCtrl: AlertController, private api:ApiProvider) {
+     public global:Global, public alertCtrl: AlertController) {
     
     this.rootPage = BlancoPage;
 

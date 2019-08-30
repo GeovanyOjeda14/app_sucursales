@@ -8,7 +8,7 @@ import * as moment from 'moment';
 import {CalificacionPage} from '../calificacion/calificacion';
 import {ModalCitaUserPage} from '../modal-cita-user/modal-cita-user';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
-import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {ContactenosPage} from '../contactenos/contactenos';
 /**
  * Generated class for the PublicacionesProveedorPage page.
@@ -58,6 +58,7 @@ load;
           this.avatar = this.global.apiUrl+this.proveedor.avatar;
           this.getProveedor();
 
+          // console.log(global);
           this.nombreUser = this.global.nombre;
           this.correoUser = this.global.infoPerfil;
           this.correoUser = this.correoUser.correo;
@@ -67,9 +68,6 @@ load;
           this.historial = true;
          
          }
-
-        
-    
   }
   goToService(servicio){
     this.navCtrl.push(ServicioPage,{servicio:servicio})
@@ -158,7 +156,7 @@ load;
   obtenerHistorialMascota(){
     this.load = true;
     this.api.getHistorialmascotas(this.global.id_usuario).subscribe((data)=>{
-      // console.log(data);
+      console.log('mascota',data);
       this.info_historial = data;
       this.mascota = true;
       this.infoHistorial();
@@ -172,7 +170,7 @@ load;
   obtenerHistorialBeneficiario(){
     this.load = true;
     this.api.getHistorialBeneficiarios(this.global.id_usuario).subscribe((data)=>{
-      // console.log(data);
+      console.log('info bene',data);
       this.info_historial = data;
       this.infoHistorial();
       this.load = false;
@@ -186,7 +184,7 @@ load;
     
     this.load = true;
     this.api.getHistorialUser(this.global.id_usuario).subscribe((data)=>{
-      // console.log(data);
+      console.log(data);
       this.info_historial = data;
       this.infoHistorial();
 
@@ -210,25 +208,32 @@ load;
     this.load = false;
     if(this.info_historial.length <= 0){
       this.mostrarHistorial = true;
+      console.log('aqui');
     }
     else{
-      // console.log(this.info_historial);
+      console.log(this.info_historial);
       for(let i = 0; i < this.info_historial.length; i++){
         
         let nombres = this.info_historial[i].nombres;
         let start = this.info_historial[i].start;
         start = moment(start).format('DD-M-YYYY');
         let nombre = this.info_historial[i].servicio;
-        let id_servicio = this.info_historial[i].servicios_idservicios;
+        let id_servicio = this.info_historial[i].id_servicios;
         let calificada = this.info_historial[i].calificada;
+        let fue = this.info_historial[i].fue;
         let id_historial = this.info_historial[i].id_historial;
         let direccion = this.info_historial[i].direccion;
+        let sucursal = this.info_historial[i].sucursal;
+        let telefono = this.info_historial[i].telefono;
+        let id_consultorio = this.info_historial[i].id_consultorio;
+        let id_sucursal = this.info_historial[i].id_sucursal;
+        let id_municipio = this.info_historial[i].id_municipio;
 
-        this.infoH.push({nombres:nombres, start: start, nombre:nombre, id_servicio:id_servicio,
-          calificada:calificada, id_historial : id_historial, direccion:direccion});
+        this.infoH.push({nombres:nombres, start: start, nombre:nombre, id_servicio:id_servicio, sucursal : sucursal, telefono : telefono, id_municipio : id_municipio,
+          calificada:calificada, id_historial : id_historial, direccion:direccion, fue : fue , id_consultorio : id_consultorio, id_sucursal : id_sucursal});
       }
-
-      // console.log(this.infoH);
+ 
+      console.log('info H',this.infoH);
 
     }
   }
@@ -242,6 +247,7 @@ load;
 
     this.load = true;
     let id = this.proveedor.id_provedor;
+    console.log(this.proveedor);
     this.api.getPublicacionesProveedor(id).subscribe((res)=>{
       this.publicaciones = res;
       this.load = false;
@@ -260,9 +266,7 @@ load;
     let modal = this.modalCtrl.create(ModalCitaUserPage,{info:info,calificacion:true});
     modal.present();
 
-    modal.onDidDismiss((data)=>{
-       
-        
+    modal.onDidDismiss((data)=>{  
     });
 
   }

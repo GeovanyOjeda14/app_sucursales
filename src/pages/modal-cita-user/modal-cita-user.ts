@@ -37,7 +37,7 @@ load;
 
     this.info = this.navParams.get('info');
     this.calificacion = this.navParams.get('calificacion');
-    // console.log(this.info);
+    console.log('modal',this.info);
 
     // if(!this.calificacion){
     //      this.getServicio();
@@ -55,7 +55,7 @@ load;
   }
 
   verServicio(){
-    // console.log(this.infoServicio);
+    console.log('info Servicio', this.infoServicio);
 
             let categoria =this.infoServicio.categoria;
             let createdAt=this.infoServicio.createdAt;
@@ -71,13 +71,14 @@ load;
             let id_servicios = this.infoServicio.id_servicios;
             let locked = this.infoServicio.locked;
             let max_citas_ves = this.infoServicio.max_citas_ves;
-            let municipio_id_municipio = this.infoServicio.municipio_id_municipio;
+            let municipio_id_municipio = this.info.id_municipio;
             let nombre = this.infoServicio.nombre;
             let precio = this.infoServicio.precio;
             let precio_cliente_prevenir = this.infoServicio.precio_cliente_prevenir;
             let promedio = this.infoServicio.promedio;
             let video = this.infoServicio.video;
             let coment = this.infoServicio.coment;
+
     
     var estrellasAmarillas = [];
     for(let j = 0; j < promedio;j++){
@@ -99,8 +100,10 @@ load;
       servicio.push({categoria:categoria, createdAt:createdAt, createdupdate:createdupdate, descripcion:descripcion,descuento:descuento,
       direccion:direccion,duracion:duracion,foto:foto, fotos:fotos, id_categoria:id_categoria, id_provedores:id_provedores,id_servicios:id_servicios,
       locked:locked, max_citas_ves:max_citas_ves, municipio_id_municipio:municipio_id_municipio, nombre:nombre, precio:precio,
-      precio_cliente_prevenir:precio_cliente_prevenir,promedio:promedio, video:video, estrellasAmarillas:estrellasAmarillas,estrellasGrises:estrellasGrises, coment:coment });
-
+      precio_cliente_prevenir:precio_cliente_prevenir,promedio:promedio, video:video, estrellasAmarillas:estrellasAmarillas,estrellasGrises:estrellasGrises, coment:coment,
+      id_servicio:id_servicios, id_provedore:id_provedores, id_municipio: municipio_id_municipio
+    });
+ 
       // console.log(servicio[0]);
       
       this.navCtrl.push(ServicioPage,{servicio:servicio , cita : true , mascota : true});
@@ -111,18 +114,18 @@ load;
     this.photoViewer.show(foto, '', {share: false});
   }
 
-  getServicio()
-  {
+  getServicio(){
     // this.loading = this.loadingCtrl.create({
     //   spinner: 'hide',
     //   content: "Espera un momento<br>estamos cargando la información... ",
     // });
     // this.loading.present();
+
     this.load = true;
     // console.log(this.info.id_servicio);
     this.api.getServicio(this.info.id_servicio).subscribe((data)=>{
       this.infoServicio = data;
-      // console.log(data);
+      console.log('servicio',data);
       this.infoServicio = this.infoServicio[0];
       let provedor = this.infoServicio.id_provedores;
       // this.loading.dismiss();
@@ -134,9 +137,7 @@ load;
       this.load = false;
       this.presentToast("Error en la conexion, intentalo más tarde");
       // console.log(err);
-    });
-
-    
+    });  
   }
 
   getProvedor(id){

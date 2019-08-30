@@ -15,6 +15,9 @@
 
 <ion-content padding>
 
+  <!-- ----------------------------------- CITAS VISTA PARA PACIENTES  ------------------------------------------------->
+
+
   <div *ngIf="!citaProvedor">
       <!-- <ion-calendar #calendar lang="es"
       [events]="currentEvents" (onDaySelect)="onDaySelect($event)" 
@@ -95,13 +98,11 @@
             </ion-card-content>
         </ion-card>
 
-
-
         <button ion-button icon-left color="danger" round block (click)="buscarCita()" [disabled]="!sucursarSelect.valid || !medicoSelect.valid">
           <ion-icon name="medkit"></ion-icon>
             Sacar cita
         </button>
-    
+  
     </div>
   
     <div *ngIf="ver === true">
@@ -148,9 +149,7 @@
             <img  class="img_cerrado"  src="/assets/imgs/cerrado.jpg" alt="">
             </div>
           
-        </div>
-        
-        
+        </div>     
         <!-- FIN CALENDARIO -->
       </div>  
     </div>

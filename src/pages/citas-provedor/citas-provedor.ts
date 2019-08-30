@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController,AlertController,ToastController,Platform , 
+import { IonicPage, NavController, NavParams,ModalController,ToastController, 
   IonicApp, App } from 'ionic-angular';
 import * as moment from 'moment';
 import {ApiProvider} from '../../providers/api/api';
 import {ModalCitaPage} from '../modal-cita/modal-cita';
-import {Global} from '../../app/global';
+// import {Global} from '../../app/global';
 import {SacarCitaPage} from '../sacar-cita/sacar-cita';
 
 
@@ -38,8 +38,7 @@ export class CitasProvedorPage {
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public api:ApiProvider,
-    private modalCtrl: ModalController,private alertCtrl: AlertController, private global:Global,
-    private toastCtrl:ToastController,private platform : Platform , private app : IonicApp , public ap: App) {
+    private modalCtrl: ModalController, private toastCtrl:ToastController, private app : IonicApp , public ap: App) {
 
     this.id_servicios = this.navParams.get('id_servicios');
     this.nombre = this.navParams.get('nombre');
