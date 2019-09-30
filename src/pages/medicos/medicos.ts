@@ -7,7 +7,7 @@ import { Global } from '../../app/global';
 import { HomePage } from '../home/home';
 import { ModalMedicoPage } from '../modal-medico/modal-medico';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 
 
@@ -41,40 +41,48 @@ export class MedicosPage {
     public loadingCtrl: LoadingController,private toastCtrl:ToastController,private modalCtrl: ModalController, public app : IonicApp,
     private photoViewer: PhotoViewer) {
 
-      this.infoMedico = this.navParams.get('medico');
-      console.log(this.infoMedico);
+      this.medico_id = this.navParams.get('medico');
+      // console.log(this.infoMedico);
 
-      if(this.infoMedico){
-        this.nombres = this.infoMedico.nombres + " " + this.infoMedico.apellidos; 
-        this.avatar = this.infoMedico.avatar;
+      if(this.medico_id){
+        this.getInfoMedico(this.medico_id);
+        // this.nombres = this.infoMedico.nombres + " " + this.infoMedico.apellidos; 
+        // this.avatar = this.infoMedico.avatar;
+ 
+        // for(let i = 0; i < this.infoMedico.titulos.length; i++){
 
-        for(let i = 0; i < this.infoMedico.titulos.length; i++){
-
-          let nombre = this.infoMedico.titulos[i].nombre;
-          let institucion = this.infoMedico.titulos[i].institucion;
-          let start = this.infoMedico.titulos[i].start;
-          start = moment(start).format('DD-M-YYYY');
-          let end = this.infoMedico.titulos[i].end;
-          end = moment(end).format('DD-M-YYYY');
+        //   let nombre = this.infoMedico.titulos[i].nombre;
+        //   let institucion = this.infoMedico.titulos[i].institucion;
+        //   let start = this.infoMedico.titulos[i].start;
+        //   start = moment(start).format('DD-M-YYYY');
+        //   let end = this.infoMedico.titulos[i].end;
+        //   end = moment(end).format('DD-M-YYYY');
   
-          this.titulos.push({nombre:nombre , institucion : institucion , start : start , end:end});
-        }
+        //   this.titulos.push({nombre:nombre , institucion : institucion , start : start , end:end});
+        // }
       }
-
-      
-
-
-      
-
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad MedicosPage');
   }
 
+  getInfoMedico(id){
+    this.load = true;
+    this.api.getInfoMedico(id).subscribe( (response)=> {
+      console.log(response);
+      this.infoMedico = response[0];
+      console.log(this.infoMedico);
+      this.load = false;
+    }, (err)=>{
+      this.load = false;
+      this.presentToast('Error en la conexion, por favor revisa tu conexion o intentalo mas tarde.')
+    });
+  }
+
   ionViewWillEnter(){
 
-    if(!this.infoMedico){
+    if(!this.medico_id){
 
       this.medicos = null;
 

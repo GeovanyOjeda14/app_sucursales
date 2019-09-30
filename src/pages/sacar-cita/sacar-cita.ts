@@ -7,6 +7,7 @@ import {Global} from '../../app/global';
 import {HomePage} from '../home/home';
 import {Validators, FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import { CalendarModule } from 'ionic3-calendar-en';
+import { MedicosPage } from '../medicos/medicos';
 
 /**
  * Generated class for the SacarCitaPage page.
@@ -972,7 +973,7 @@ export class SacarCitaPage {
     // console.log(ev);
 
     this.api.getMedicosServicio(this.sucursarSelect.value.id_sucursales, this.id_servicio).subscribe( (response) => {
-      console.log(response);
+      console.log('medicos',response);
       this.medicos = response;
 
       if(this.medicos.length <= 1){
@@ -996,6 +997,11 @@ export class SacarCitaPage {
   buscarCita(){
     this.ver = true;
     this.horarios();
+  }
+
+  verPerfilMedico(){
+    console.log(this.medicoSelect);
+    this.navCtrl.push(MedicosPage, { medico: this.medicoSelect.value.medico_id })
   }
 
 }

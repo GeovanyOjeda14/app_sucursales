@@ -10,7 +10,6 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { BlancoPage } from '../blanco/blanco';
 import { AlertController } from 'ionic-angular';
 import { UserPage } from '../user/user';
-
  
 @Component({
   selector: 'page-home',
@@ -46,9 +45,9 @@ topics;
 admin;
 val;
 facebook;
-slideData = [{ image: "/assets/imgs/slider/banner1a.png" },
-{ image: "/assets/imgs/slider/banner3a.png" },
-{ image: "/assets/imgs/slider/porquenosprefieren.png" }]
+slideData = [{ image: "/assets/imgs/slider/image_1.jpeg" },
+{ image: "/assets/imgs/slider/image_2.jpeg" },
+{ image: "/assets/imgs/slider/image_3.jpeg" }]
 load;
 
 
@@ -228,7 +227,7 @@ load;
             let id_servicios = this.calificacion[i].id_servicios;
             let locked = this.calificacion[i].locked;
             let max_citas_ves = this.calificacion[i].max_citas_ves;
-            let municipio_id_municipio = this.calificacion[i].municipio_id_municipio;
+            let municipio_id_municipio = this.calificacion[i].id_municipio;
             let nombre = this.calificacion[i].nombre;
             let medico_id = this.calificacion[i].medico_id;
             let precio = this.calificacion[i].precio;
@@ -454,7 +453,7 @@ load;
       // console.log(data);
 
 
-      this.provedor = data;
+      this.provedor = data[0];
       this.global.infoPerfil = this.provedor;
       
       this.info = this.global.infoPerfil;

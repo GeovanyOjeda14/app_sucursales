@@ -270,6 +270,7 @@ export class ApiProvider {
       return this.http.get(this.apiUrl+'/provedores/'+id);
     }
     getPublicacionesProveedor(id){
+      console.log('789');
       return this.http.get(this.apiUrl+'/services/'+id);
     }
 

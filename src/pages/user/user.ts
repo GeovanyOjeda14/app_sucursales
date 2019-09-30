@@ -142,7 +142,7 @@ export class UserPage {
    else if (this.global.admin === true && this.global.medico === false) {
     this.infoUser = this.global.infoPerfil;
     this.foto = this.global.apiUrl+this.infoUser.avatar;
-
+    console.log('provedor', this.infoUser);
     this.datosAdmin = this.formBuilder.group({
 
       email: [this.infoUser.correo, [Validators.required,Validators.email,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],

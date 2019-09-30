@@ -78,7 +78,6 @@ export class WelcomePage {
         this.tokenR = this.resposeData.token;
         this.id_usuario = this.resposeData.id_usuario;
         this.esAdmin = this.resposeData.admin; 
-        // this.userInfo=[this.esAdmin,this.id_usuario]
       
         localStorage.setItem(this.key,JSON.stringify(this.resposeData.token));
         localStorage.setItem(this.keyId,JSON.stringify(this.resposeData.id_usuario));
@@ -92,7 +91,7 @@ export class WelcomePage {
         this.presentToast("usuario o contraseña incorrectos");
       }
     },
-    
+     
     (error)=>{
       // this.loading.dismiss();
       this.load = false;

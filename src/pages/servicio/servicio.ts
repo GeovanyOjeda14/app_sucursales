@@ -7,7 +7,7 @@ import {ApiProvider} from '../../providers/api/api';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import {Global} from '../../app/global';
 import * as moment from 'moment';
-import { MedicosPage } from '../medicos/medicos';
+// import { MedicosPage } from '../medicos/medicos';
 
 // @Pipe({
 //   name: 'youtube',
@@ -116,10 +116,10 @@ export class ServicioPage {
     
   }
 
-  medicoPerfil(){
-    // console.log("medico perfil" , this.servicio.medico_id);
-    this.navCtrl.push(MedicosPage,{medico:this.infoMedico});
-  }
+  // medicoPerfil(){
+  //   // console.log("medico perfil" , this.servicio.medico_id);
+  //   this.navCtrl.push(MedicosPage,{medic: true, medico:this.infoMedico});
+  // }
 
   getSucursales(id_servicio, id_provedor, id_municipio) {
     // console.log('servicio', this.servicio);
@@ -128,6 +128,7 @@ export class ServicioPage {
       console.log(response);
       this.sucursales = response;
     }, (err) => {
+      this.presentToast('Error en la conexion, por favor revisa tu conexion o intentalo mas tarde.');
       console.log(err);
     });
   }
@@ -229,8 +230,8 @@ export class ServicioPage {
   getProveedor(){
     this.load = true;
     this.api.getProovedor(this.servicio.id_provedores).subscribe((data)=>{
-      this.prov=data;
-      // console.log(this.prov);
+      this.prov=data[0];
+      console.log('prov',this.prov);
       
       this.nombre = this.prov.nombre;
       this.nit = this.prov.nit;
@@ -250,9 +251,10 @@ export class ServicioPage {
 
 sacarCita(idProduct,id_categoria)
 {
-  console.log(idProduct,'  -  ',id_categoria);
-  this.navCtrl.push(SacarCitaPage,{id_servicio:idProduct,mascota:this.mascota,id_categoria:id_categoria, sucursales : this.sucursales});
-
+  if(this.sucursales){
+    console.log(idProduct,'  -  ',id_categoria);
+    this.navCtrl.push(SacarCitaPage,{id_servicio:idProduct,mascota:this.mascota,id_categoria:id_categoria, sucursales : this.sucursales});
+  }
 }
 
 goToMaspublicaciones(){

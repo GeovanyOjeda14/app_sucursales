@@ -121,7 +121,7 @@ cancel(ev:any){
         //     });
         //     this.loading.present();
         this.load = true;
-
+        console.log(data.municipio,data.categoria);
         this.api.getBusqueda(data.municipio,data.categoria).subscribe((res)=>{
           let a = res[0].vacio;
           if (a === true){

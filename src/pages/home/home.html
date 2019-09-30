@@ -21,13 +21,13 @@
   </ion-slide>
 </ion-slides>
 
-<button ion-button icon-left color="danger"  (click)="misCitas()" class="btnCitas" round block>
+<button ion-button icon-left color="danger"  (click)="misCitas()" class="btnCitas" round block *ngIf="(!global.admin && !global.medico) || global.medico">
 	<ion-icon name="list-box"></ion-icon>
 Mis citas</button>
 <!-- <br> -->
-<button *ngIf="global.admin" ion-button icon-left color="prevenir"  (click)="adminServs()" class="btnCitas" round block>
+<!-- <button *ngIf="global.admin" ion-button icon-left color="prevenir"  (click)="adminServs()" class="btnCitas" round block>
 	<ion-icon name="list-box"></ion-icon>
-Administrar servicios</button>
+Administrar servicios</button> -->
 <!-- <br> -->
 <!-- <button ion-button icon-left color="energized"  (click)="misCitas()" class="btnCitas" round block>
 	<ion-icon name="list-box"></ion-icon>

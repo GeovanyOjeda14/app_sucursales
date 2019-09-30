@@ -44,7 +44,7 @@ load;
   constructor(public navCtrl: NavController, public navParams: NavParams, private api:ApiProvider,
               private global:Global,private toastCtrl:ToastController, private modalCtrl: ModalController,
               private app : IonicApp,private photoViewer: PhotoViewer,private formBuilder: FormBuilder,public loadingCtrl: LoadingController) {
-
+ 
         this.rol = this.navParams.get('rol');
         //  console.log(this.rol);
          if(!this.rol){
@@ -74,9 +74,11 @@ load;
   }
 
   goToMasPublicaciones(){
+    // console.log(this.proveedor);
     this.navCtrl.push(ContactenosPage, {id:this.proveedor.id_provedor})
-  }
 
+  }
+ 
   mensaje(){
   
     this.correoUser;
@@ -247,8 +249,9 @@ load;
 
     this.load = true;
     let id = this.proveedor.id_provedor;
-    console.log(this.proveedor);
+    console.log(this.proveedor,'123');
     this.api.getPublicacionesProveedor(id).subscribe((res)=>{
+      console.log('456');
       this.publicaciones = res;
       this.load = false;
       this.info();

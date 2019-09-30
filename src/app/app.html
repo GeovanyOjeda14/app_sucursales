@@ -16,10 +16,10 @@
            <p>Mi cuenta</p>
                
     </button>
-    <button *ngIf="global.admin" ion-item (click)="pubicar()" menuClose>
+    <!-- <button *ngIf="global.admin" ion-item (click)="pubicar()" menuClose>
       <ion-icon item-left name="list-box"></ion-icon>
      Publicar servicio
-    </button>
+    </button> -->
     <button *ngIf="!global.admin && !global.medico" ion-item (click)="beneficiarios()" menuClose>
       <ion-icon item-left name="list-box"></ion-icon>
     Beneficiarios
@@ -35,7 +35,7 @@
         Servicios
       </button> -->
       
-      <button ion-item (click)="goToHistorial()" menuClose hideBackButton>
+      <button ion-item (click)="goToHistorial()" menuClose hideBackButton *ngIf="(!global.admin && !global.medico) || global.medico">
       	<ion-icon name="clipboard" item-start></ion-icon>
         Mis Citas
       </button>

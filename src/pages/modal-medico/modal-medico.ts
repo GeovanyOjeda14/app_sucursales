@@ -53,7 +53,7 @@ export class ModalMedicoPage {
         this.presentToast("Medico eliminado con exito");
         this.viewCtrl.dismiss();
       }else{
-        this.presentToast("El medico no se puede eliminar por que tiene un servicio asociado, elimina primero el servicio.");
+        this.presentToast("El medico no se puede eliminar por que tiene un consultorio asociado, elimina primero el consultorio desde la pagina web http://citas.prevenirexpress.com");
       }
     },(err)=>{
       this.load = false;

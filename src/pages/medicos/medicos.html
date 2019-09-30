@@ -16,7 +16,7 @@
 
 <ion-content padding>
 
-  <div *ngIf="!infoMedico">
+  <div *ngIf="!infoMedico && !load">
 
       <div class="boton">
           <button ion-button block round icon-left color="secondary" (click)="goToAgregar()">
@@ -49,9 +49,9 @@
   <div *ngIf="infoMedico">
 
       <div class="img_medico">
-          <img id="userImg" [src]="avatar" alt="nd" (click)="verImg(avatar)">
+          <img id="userImg" [src]="infoMedico.avatar" alt="nd" (click)="verImg(avatar)">
         </div>
-  <h1 class="h1">{{nombres}}</h1>
+  <h1 class="h1">{{infoMedico.nombres}}</h1>
   <div class="card">
         <ion-card>
           <ion-card-content>
@@ -61,7 +61,7 @@
             <br>
             <h2><strong>Estudios :</strong></h2>
               <br>
-            <ion-item *ngFor="let t of titulos">
+            <ion-item *ngFor="let t of infoMedico.titulos">
               <p><strong>Titulo : </strong>  {{t.nombre}}</p>
               <p><strong>Institucion : </strong>  {{t.institucion}}</p>
               <p><strong>Fecha de Inicio : </strong>  {{t.start}}</p>
